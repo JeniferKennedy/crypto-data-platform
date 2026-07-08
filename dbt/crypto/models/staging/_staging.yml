@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_trades
+    description: "Cleaned, deduplicated trade events."
+    columns:
+      - name: event_id
+        description: "Unique identifier for the trade event."
+        tests:
+          - unique
+          - not_null
+      - name: symbol
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'ADAUSDT']
+      - name: side
+        tests:
+          - accepted_values:
+              values: ['buy', 'sell']
+      - name: price
+        tests:
+          - not_null
+
+  - name: stg_klines
+    description: "Cleaned daily OHLCV candles."
+    columns:
+      - name: symbol
+        tests:
+          - not_null
+      - name: trade_date
+        tests:
+          - not_null

@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_symbol
+    description: "Conformed symbol dimension."
+    columns:
+      - name: symbol_key
+        description: "Surrogate key."
+        tests:
+          - unique
+          - not_null
+      - name: symbol
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_daily_price
+    description: "Daily OHLCV fact at symbol-day grain."
+    columns:
+      - name: symbol_key
+        description: "FK to dim_symbol."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_symbol')
+              field: symbol_key
+      - name: trade_date
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - symbol
+            - trade_date
+
+  - name: fct_trade_activity
+    description: "Hourly trade activity fact at symbol-hour grain."
+    columns:
+      - name: symbol_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_symbol')
+              field: symbol_key
+      - name: trade_count
+        tests:
+          - not_null

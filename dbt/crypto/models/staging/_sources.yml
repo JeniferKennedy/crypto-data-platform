@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "Raw landing tables loaded from the data lake."
+    tables:
+      - name: trades
+        description: "Individual trade events from the streaming pipeline."
+      - name: klines
+        description: "Daily OHLCV candles from the batch pipeline."
