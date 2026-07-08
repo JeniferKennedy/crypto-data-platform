@@ -301,19 +301,3 @@ cloud credential to talk about.
 Tear everything down (and wipe data) with: `docker compose down -v`
 
 ---
-
-## How to put this on your resume
-
-Frame it as a system with scale and impact, not a tutorial:
-
-> **End-to-End Crypto Market Data Platform** — *Personal Project* · [GitHub] [Demo]
-> Built a batch + streaming data platform ingesting live market events through Kafka
-> into an S3 data lake and warehouse. Modeled data into a star schema with dbt
-> (5 models, 15+ data quality tests), orchestrated with Airflow, validated via
-> GitHub Actions CI, and surfaced insights in a Metabase dashboard. Containerized
-> with Docker; cloud storage provisioned via Terraform.
-
-Link a clean GitHub repo, a short blog post explaining one design decision, and a
-2-minute demo video. Be ready to explain **why** you chose each tool — that's what
-proves the experience is real.
-```
